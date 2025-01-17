@@ -80,69 +80,77 @@ function Todo() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      <div className="w-full bg-blue-600 p-6 text-white text-center">
-        <h1 className="text-3xl font-bold">Todo Application</h1>
-      </div>
-      <div className="w-full max-w-3xl mt-6">
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <h3 className="text-xl font-semibold mb-4">Add Task</h3>
-          {message && <p className="text-green-500">{message}</p>}
-          {error && <p className="text-red-500">{error}</p>}
-          <div className="flex gap-4">
-            <input
-              type="text"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="flex-1 p-2 border rounded"
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="flex-1 p-2 border rounded"
-            />
-            <button
-              onClick={handleSubmit}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-            >
-              {updatedId ? 'Update' : 'Add'}
-            </button>
-          </div>
-        </div>
-        <div className="bg-white shadow-md rounded-lg mt-6 p-6">
-          <h3 className="text-xl font-semibold mb-4">Tasks</h3>
-          <ul>
-            {data.map((item) => (
-              <li
-                key={item._id}
-                className="flex justify-between items-center p-2 border-b"
-              >
-                <div>
-                  <span className="font-bold">{item.title}</span>: {item.description}
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => handleEdit(item)}
-                    className="px-3 py-1 bg-yellow-400 text-white rounded hover:bg-yellow-500"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item._id)}
-                    className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+<div className="min-h-screen bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 flex flex-col items-center">
+  <div className="w-full bg-white shadow-lg p-6 text-center rounded-b-3xl">
+    <h1 className="text-4xl font-extrabold text-blue-600">Todo Application</h1>
+  </div>
+
+  <div className="w-full max-w-4xl mt-10">
+    {/* Add Task Section */}
+    <div className="bg-white shadow-xl rounded-2xl p-8">
+      <h3 className="text-2xl font-bold mb-4 text-gray-700">Add a New Task</h3>
+      {message && <p className="text-green-600 mb-2">{message}</p>}
+      {error && <p className="text-red-600 mb-2">{error}</p>}
+      <div className="flex gap-4">
+        <input
+          type="text"
+          placeholder="Task Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="text"
+          placeholder="Task Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="flex-1 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          onClick={handleSubmit}
+          className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg shadow-lg hover:bg-blue-700"
+        >
+          {updatedId ? "Update Task" : "Add Task"}
+        </button>
       </div>
     </div>
+
+    {/* Task List Section */}
+    <div className="bg-white shadow-xl rounded-2xl mt-10 p-8">
+      <h3 className="text-2xl font-bold mb-4 text-gray-700">Task List</h3>
+      <ul className="space-y-4">
+        {data.map((item) => (
+          <li
+            key={item._id}
+            className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-sm hover:bg-gray-100"
+          >
+            <div>
+              <span className="font-semibold text-gray-800">
+                {item.title}
+              </span>
+              <p className="text-gray-600">{item.description}</p>
+            </div>
+            <div className="flex gap-4">
+              <button
+                onClick={() => handleEdit(item)}
+                className="px-4 py-2 bg-yellow-400 text-white font-semibold rounded-lg hover:bg-yellow-500"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(item._id)}
+                className="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
   );
 }
 
