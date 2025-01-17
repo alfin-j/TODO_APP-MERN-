@@ -10,7 +10,8 @@ app.get('/', (req, res) => { // Corrected the argument order
 });
 
 //connecting to mongodb and creating databse todoapp(mongodb part 2)
-mongoose.connect("mongodb://127.0.0.1:27017/todoapp",)
+// mongoose.connect("mongodb://127.0.0.1:27017/todoapp",)
+mongoose.connect("mongodb+srv://alfin:alfin*123@cluster0.a7oli.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",)
 .then(() => {
     console.log("DataBase Connected")
 })
@@ -78,15 +79,15 @@ app.delete('/todo/:id',async(req,res)=>{
 })
 
 //deleting everything from database
-app.delete('/todo',async(req,res)=>{
-    try{
-        await collection.deleteMany({})
-        res.status(200).send({message:"Everything Erased from collection"});
-    }
-    catch(error){
-        console.log(error)
-    }
-})
+// app.delete('/todo',async(req,res)=>{
+//     try{
+//         await collection.deleteMany({})
+//         res.status(200).send({message:"Everything Erased from collection"});
+//     }
+//     catch(error){
+//         console.log(error)
+//     }
+// })
 
 //for editing the databse
 app.put('/todo/:id',async (req ,res) => {
